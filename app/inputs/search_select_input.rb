@@ -11,6 +11,10 @@ class SearchSelectInput < ActiveAdminAddons::InputBase
     valid_method
   end
 
+  def selected_item
+    object_class.reflect_on_association(association_name) ? object.send(association_name) : selected_collection.first
+  end
+
   def load_control_attributes
     load_class(@options[:class])
     load_data_attr(:fields, default: ["name"], formatter: :to_json)

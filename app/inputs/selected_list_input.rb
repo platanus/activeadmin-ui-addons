@@ -6,7 +6,7 @@ class SelectedListInput < ActiveAdminAddons::InputBase
 
   def load_control_attributes
     load_class(@options[:class])
-    load_data_attr(:model, value: model_name)
+    load_data_attr(:model, value: builder.object_name)
     load_data_attr(:method, value: method)
     load_data_attr(:url, default: url_from_method)
     load_data_attr(:response_root, default: tableize_method)
