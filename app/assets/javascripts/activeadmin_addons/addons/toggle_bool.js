@@ -9,9 +9,20 @@ var initializer = function() {
     var url = boolSwitch.data('url');
     var value = boolSwitch.data('value');
     var successMessage = boolSwitch.data('success_message');
+    var confirmToggleTrueMessage = boolSwitch.data('confirm_toggle_true_message');
+    var confirmToggleFalseMessage = boolSwitch.data('confirm_toggle_false_message');
     var data = { id: objectId };
     data[model] = {};
     data[model][field] = !value;
+    var resp = true;
+
+    if (value && confirmToggleFalseMessage) {
+      resp = confirm(confirmToggleFalseMessage);
+    } else if (!value && confirmToggleTrueMessage) {
+      resp = confirm(confirmToggleTrueMessage);
+    }
+
+    if (!resp) return;
 
     $.ajax({
       url: url,
