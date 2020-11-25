@@ -49,4 +49,7 @@ var initializer = function() {
 };
 
 $(initializer);
+$(document).on('turbolinks:before-visit', function(){
+  $('.select2-hidden-accessible').select2('destroy');
+});
 $(document).on('turbolinks:load', initializer);
