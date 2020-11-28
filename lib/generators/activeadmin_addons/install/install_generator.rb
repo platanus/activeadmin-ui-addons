@@ -47,6 +47,7 @@ module ActiveadminAddons
       def css_assets
         if options['theme'] == "material"
           to_add = "$am-theme-primary: #342e48;\n"
+          to_add += "@import 'active_material';\n"
           to_add += "@import 'activeadmin_addons/all';\n"
           to_add + "@import 'activeadmin_addons/material';\n"
         else

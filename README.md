@@ -228,7 +228,16 @@ filter :category_id, as: :search_select_filter
 Use default active_admin theme.
 
 #### Material Theme
-Show material design theme using [active_material](https://github.com/vigetlabs/active_material). If you want to use it, you should run the generator using the flag `theme` as follow:
+Show material design theme using [active_material](https://github.com/vigetlabs/active_material). If you want to use it, you need to install the 2 gems :
+
+```ruby
+# gemfile
+
+gem 'activeadmin_addons'
+gem 'active_material'
+```
+
+and you should run the generator using the flag `theme` as follow:
 
 ```ruby
 rails g activeadmin_addons:install --theme material
@@ -240,6 +249,7 @@ $am-theme-primary: YOUR-COLOR;
 ...
 other colors
 ...
+@import 'active_material';
 @import 'activeadmin_addons/material';
 ```
 
