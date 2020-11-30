@@ -17,11 +17,11 @@ var initializer = function() {
     });
 
     function setupSelect2(select) {
-      var selectConfig = {
+      var selectConfig = $.extend({
         placeholder: '',
         width: '80%',
         allowClear: true,
-      };
+      }, ActiveadminAddons.config.selectConfig);
 
       function isFilter(path) {
         return $(select).closest(path).length > 0;

@@ -1,11 +1,15 @@
 module ActiveadminAddons
   extend self
 
-  attr_writer :default_select, :datetime_picker_default_options, :datetime_picker_input_format
+  attr_writer :default_select, :select_config, :datetime_picker_default_options, :datetime_picker_input_format
 
   def default_select
     return "select2" unless @default_select
     @default_select
+  end
+
+  def select_config
+    @select_config || {}
   end
 
   def datetime_picker_default_options
