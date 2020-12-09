@@ -23,10 +23,19 @@ module ActiveadminAddons
       def add_stylesheets
         file_path = 'app/assets/stylesheets/active_admin'
 
+        file_style = "#{file_path}.scss"
         begin
-          prepend_file("#{file_path}.scss", css_assets)
+          prepend_file(file_style, css_assets)
         rescue
-          prepend_file("#{file_path}.css.scss", css_assets)
+          file_style = "#{file_path}.css.scss"
+          prepend_file(file_style, css_assets)
+        end
+        # active_material need replace active_admin/base style
+        # we'll comment this line
+        # https://github.com/vigetlabs/active_material/blob/v1.4.1/README.md#usage
+        if options['theme'] == "material"
+          flag = '@import "active_admin/base"'
+          gsub_file(file_style, %r{^(\s*)([^\/|\n]*#{flag})}, '\1// \2')
         end
       end
 
