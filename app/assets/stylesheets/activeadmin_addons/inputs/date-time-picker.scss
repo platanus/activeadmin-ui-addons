@@ -1,5 +1,296 @@
+// Variables
+$dt-color: #ccc;
+$dt-color-alt: #000;
+$dt-bg: #f4f4f4;
+$dt-border: #63686e;
+$dt-border-alt: #444;
+$dt-border-opt: #222;
+
+$dt-title-color: #fff;
+$dt-title-bg: #6a7176;
+$dt-title-bg-alt: #4d5256;
+$dt-title-border: #44484b;
+
+$dt-calendar-title-color: #333;
+$dt-calendar-title-bg: #dbdddf;
+$dt-calendar-color: #666;
+$dt-calendar-hover-bg: #eceef0;
+$dt-calendar-select-color: #fff;
+$dt-select-bg: #5a5f64;
+
+// Input
 input[type=text] {
   &.date-time-picker-input {
     width: 110px;
+  }
+}
+
+// Buttons
+.btn {
+  opacity: 1;
+  color: $dt-title-color;
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 10px auto;
+  background: transparent;
+}
+
+div.xdsoft_datetimepicker {
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .26);
+  background: $dt-bg;
+  color: $dt-color;
+  border: 1px solid $dt-border;
+  border-radius: 7px 7px 3px 3px;
+  padding: 0;
+  margin-top: 3px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  &::before {
+    content: '';
+    position: absolute;
+    right: 45%;
+    top: -6px;
+    width: 0;
+    height: 0;
+    border-left: 8.5px solid rgba(0, 0, 0, 0);
+    border-right: 8.5px solid rgba(0, 0, 0, 0);
+    border-bottom: 10px solid $dt-title-bg;
+  }
+
+  .xdsoft_label {
+    background-color: transparent;
+    padding: 5px 1px;
+    margin: 6px 0 0;
+    text-shadow: $dt-color-alt 0 1px 0;
+    color: $dt-title-color;
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;
+    line-height: .8em;
+
+    &.xdsoft_month {
+      width: 70px;
+    }
+
+    &.xdsoft_year {
+      width: 40px;
+      text-align: left;
+      margin-left: 5px;
+    }
+
+    i {
+      display: none;
+    }
+
+    & > .xdsoft_select {
+      border: 1px solid $dt-title-border;
+      background: $dt-bg;
+      top: 26px;
+
+      & > div > .xdsoft_option {
+        background: $dt-bg;
+        color: $dt-select-bg;
+        text-shadow: none;
+        padding: 2px 10px 2px 5px;
+        font-size: .9em;
+        text-decoration: none !important;
+
+        &:hover {
+          color: $dt-select-bg;
+          background: $dt-calendar-hover-bg;
+        }
+
+        &.xdsoft_current {
+          color: $dt-calendar-select-color;
+          background: $dt-select-bg;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  .xdsoft_datepicker.active {
+    width: 160px;
+    margin: 0;
+    position: relative;
+
+    .xdsoft_prev,
+    .xdsoft_next {
+      @extend .btn;
+      border-top: 5px solid transparent !important;
+      border-bottom: 5px solid transparent !important;
+
+      &:hover,
+      &:focus {
+        background: transparent;
+        text-decoration: none;
+      }
+    }
+
+    .xdsoft_prev {
+      margin-left: 5px;
+      border-right: 5px solid $dt-title-color !important;
+    }
+
+    .xdsoft_next {
+      border-left: 5px solid $dt-title-color !important;
+    }
+
+    .xdsoft_today_button {
+      opacity: 1;
+      box-shadow: none;
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAAeCAYAAADaW7vzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUExQUUzOTA0M0UyMTFFNDlBM0FFQTJENTExRDVBODYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUExQUUzOTE0M0UyMTFFNDlBM0FFQTJENTExRDVBODYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBQTFBRTM4RTQzRTIxMUU0OUEzQUVBMkQ1MTFENUE4NiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBQTFBRTM4RjQzRTIxMUU0OUEzQUVBMkQ1MTFENUE4NiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp0VxGEAAAIASURBVHja7JrNSgMxEMebtgh+3MSLr1T1Xn2CHoSKB08+QmR8Bx9A8e7RixdB9CKCoNdexIugxFlJa7rNZneTbLIpM/CnNLsdMvNjM8l0mRCiQ9Ye61IKCAgZAUnH+mU3MMZaHYChBnJUDzWOFZdVfc5+ZFLbrWDeXPwbxIqrLLfaeS0hEBVGIRQCEiZoHQwtlGSByCCdYBl8g8egTTAWoKQMRBRBcZxYlhzhKegqMOageErsCHVkk3hXIFooDgHB1KkHIHVgzKB4ADJQ/A1jAFmAYhkQqA5TOBtocrKrgXwQA8gcFIuAIO8sQSA7hidvPwaQGZSaAYHOUWJABhWWw2EMIH9QagQERU4SArJXo0ZZL18uvaxejXt/Em8xjVBXmvFr1KVm/AJ10tRe2XnraNqaJvKE3KHuUbfK1E+VHB0q40/y3sdQSxY4FHWeKJCunP8UyDdqJZenT3ntVV5jIYCAh20vT7ioP8tpf6E2lfEMwERe+whV1MHjwZB7PBiCxcGQWwKZKD62lfGNnP/1poFAA60T7rF1UgcKd2id3KDeUS+oLWV8DfWAepOfq00CgQabi9zjcgJVYVD7PVzQUAUGAQkbNJTBICDhgwYTjDYD6XeW08ZKh+A4pYkzenOxXUbvZcWz7E8ykRMnIHGX1XPl+1m2vPYpL+2qdb8CDAARlKFEz/ZVkAAAAABJRU5ErkJggg==');
+
+      &:hover {
+        background-color: transparent;
+        box-shadow: none;
+      }
+    }
+  }
+
+  .xdsoft_mounthpicker {
+    height: 34px;
+    background-color: $dt-title-bg;
+    background-image: linear-gradient(180deg, $dt-title-bg, $dt-title-bg-alt);
+    border-bottom: 1px solid $dt-title-border;
+    border-top-left-radius: 6px;
+  }
+
+  .xdsoft_calendar {
+    td,
+    th {
+      border: 0;
+      width: 22px;
+      text-align: center;
+    }
+
+    td {
+      height: 24px;
+
+      &:hover {
+        background-color: transparent !important;
+
+        div {
+          background-color: $dt-calendar-hover-bg;
+          text-decoration: none !important;
+        }
+      }
+
+      div {
+        display: inline;
+        padding: 4px;
+        margin: 0;
+        text-align: center;
+        border-radius: 3px;
+        color: $dt-calendar-color;
+        text-decoration: underline;
+        font-weight: bold;
+        font-size: .85em;
+      }
+    }
+
+    th {
+      height: 14px;
+      border: 1px solid $dt-bg;
+      background-color: $dt-calendar-title-bg;
+      color: $dt-calendar-title-color;
+      font-weight: normal;
+      font-size: .8em;
+      padding-top: 1px;
+    }
+
+    td.xdsoft_default,
+    td.xdsoft_current {
+      background: transparent;
+      box-shadow: none;
+
+      div {
+        background-color: $dt-select-bg;
+        color: $dt-calendar-select-color;
+      }
+    }
+  }
+
+  .xdsoft_datepicker.active + .xdsoft_timepicker {
+    margin-top: 0;
+    margin-left: 0;
+
+    &::before {
+      content: '';
+      width: 100%;
+      display: block;
+      @extend .xdsoft_mounthpicker;
+      height: 33px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 6px;
+    }
+  }
+
+  .xdsoft_timepicker {
+    .xdsoft_prev,
+    .xdsoft_next {
+      @extend .btn;
+      border-left: 5px solid transparent !important;
+      border-right: 5px solid transparent !important;
+
+      &:hover,
+      &:focus {
+        background: transparent;
+        text-decoration: none;
+      }
+    }
+
+    .xdsoft_prev {
+      border-bottom: 5px solid $dt-select-bg !important;
+    }
+
+    .xdsoft_next {
+      border-top: 5px solid $dt-select-bg !important;
+    }
+
+    .xdsoft_time_box {
+      height: 120px;
+      border: 0;
+
+      .xdsoft_time {
+        color: $dt-calendar-color;
+        height: 20px;
+        line-height: 20px;
+        text-decoration: underline;
+        border: 0;
+        font-weight: bold;
+        font-size: .85em;
+        width: 40px;
+        margin: 0 auto;
+      }
+
+      .xdsoft_time_variant {
+        width: 50px;
+        margin: 0 auto;
+        border-left: 1px solid $dt-border;
+      }
+    }
+
+    // Time. Default
+    .xdsoft_time_box >div >div {
+      background: $dt-bg;
+      color: $dt-color;
+    }
+
+    // Time. Hover
+    .xdsoft_time_box >div >div:hover {
+      background-color: $dt-calendar-hover-bg !important;
+      text-decoration: none !important;
+      color: $dt-calendar-color !important;
+    }
+
+    // Time. Selected
+    .xdsoft_time_box>div>div.xdsoft_current {
+      box-shadow: none;
+      border-radius: 3px;
+      background-color: $dt-select-bg !important;
+      color: $dt-calendar-select-color !important;
+    }
   }
 }
